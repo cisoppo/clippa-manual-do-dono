@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manual do Dono — Clippa</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0b0f1a;
+      color: #e2e8f0;
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    header {
+      border-left: 4px solid #e05c2e;
+      padding-left: 20px;
+      margin-bottom: 48px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    nav {
+      background: #141928;
+      border: 1px solid #1e2a40;
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 48px;
+    }
+
+    nav h2 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #e05c2e;
+      margin-bottom: 14px;
+    }
+
+    nav ol {
+      padding-left: 18px;
+    }
+
+    nav ol li {
+      margin-bottom: 6px;
+    }
+
+    nav a {
+      color: #7dd3fc;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    nav a:hover { text-decoration: underline; }
+
+    section {
+      background: #141928;
+      border: 1px solid #1e2a40;
+      border-radius: 12px;
+      padding: 32px 36px;
+      margin-bottom: 32px;
+    }
+
+    section h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      border-left: 3px solid #e05c2e;
+      padding-left: 14px;
+      margin-bottom: 20px;
+    }
+
+    section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #e05c2e;
+      margin: 20px 0 10px;
+    }
+
+    p { margin-bottom: 14px; }
+
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 14px;
+    }
+
+    li { margin-bottom: 6px; }
+
+    strong { color: #f1f5f9; }
+
+    em { color: #94a3b8; font-style: italic; }
+
+    blockquote {
+      border-left: 3px solid #e05c2e;
+      padding: 12px 18px;
+      background: #0f1523;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+      color: #cbd5e1;
+      font-style: italic;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #e05c2e22;
+      color: #e05c2e;
+      border: 1px solid #e05c2e44;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .alert {
+      background: #1a1228;
+      border: 1px solid #7c3aed55;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      font-size: 0.9rem;
+      color: #c4b5fd;
+    }
+
+    .alert strong { color: #ddd6fe; }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    @media (max-width: 600px) {
+      .card-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: #0f1523;
+      border: 1px solid #1e2a40;
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+
+    .card .num {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #e05c2e;
+      margin-bottom: 6px;
+    }
+
+    .card h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.88rem;
+    }
+
+    th {
+      background: #0f1523;
+      color: #e05c2e;
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 2px solid #1e2a40;
+      font-weight: 600;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #1e2a40;
+      color: #cbd5e1;
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    tr:hover td { background: #0f1523; }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .badge-green { background: #14532d55; color: #86efac; border: 1px solid #16a34a55; }
+    .badge-yellow { background: #78350f55; color: #fcd34d; border: 1px solid #d9770655; }
+    .badge-red { background: #7f1d1d55; color: #fca5a5; border: 1px solid #dc262655; }
+
+    .principles {
+      counter-reset: principles;
+      list-style: none;
+      padding: 0;
+    }
+
+    .principles li {
+      counter-increment: principles;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 14px 0;
+      border-bottom: 1px solid #1e2a40;
+    }
+
+    .principles li:last-child { border-bottom: none; }
+
+    .principles li::before {
+      content: counter(principles);
+      background: #e05c2e;
+      color: white;
+      font-weight: 700;
+      font-size: 0.85rem;
+      min-width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    footer {
+      text-align: center;
+      color: #475569;
+      font-size: 0.8rem;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid #1e2a40;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>Manual do Dono — Clippa</h1>
+    <p>Baseado no curso Cabeça de Dono &nbsp;|&nbsp; Atualizado: Abril 2026</p>
+  </header>
+
+  <nav>
+    <h2>Índice</h2>
+    <ol>
+      <li><a href="#fase">Em qual fase estamos?</a></li>
+      <li><a href="#vendemos">O que vendemos de verdade</a></li>
+      <li><a href="#storybrand">O Cliente como Herói — StoryBrand</a></li>
+      <li><a href="#renovacao">A Renovação é o Produto Real</a></li>
+      <li><a href="#alavancas">4 Alavancas de Receita</a></li>
+      <li><a href="#embaixadores">Embaixadores</a></li>
+      <li><a href="#ouvir">Ouvir antes de construir</a></li>
+      <li><a href="#funil">O Funil ACP</a></li>
+      <li><a href="#automatizar">O que automatizar agora</a></li>
+      <li><a href="#mentalidade">Mentalidade do Dono</a></li>
+      <li><a href="#estrategia">O que é Estratégia</a></li>
+      <li><a href="#4cs">Os 4C's da Estratégia</a></li>
+      <li><a href="#glc">Triângulo GLC</a></li>
+      <li><a href="#diagnostico">Roteiro de Planejamento Estratégico</a></li>
+      <li><a href="#7areas">As 7 Áreas para Escalar</a></li>
+      <li><a href="#principios">Os 5 Princípios da Clippa Agora</a></li>
+      <li><a href="#obstaculos">Para cada obstáculo, defina 4 elementos</a></li>
+      <li><a href="#roteiro2">Roteiro — 2° Passo</a></li>
+      <li><a href="#caseg4">Case G4 — Congruência na Prática</a></li>
+      <li><a href="#financeiro">Planejamento Financeiro de Longo Prazo</a></li>
+    </ol>
+  </nav>
+
+  <!-- FASE -->
+  <section id="fase">
+    <h2>Em qual fase estamos?</h2>
+    <div class="tag">Fase 1</div>
+    <p>A Clippa está na <strong>Fase 1: Criar o Produto e Vender.</strong></p>
+    <ul>
+      <li>Pouco recurso → fazer tudo com pouco</li>
+      <li>Validar no mercado</li>
+      <li>Aprender e ganhar</li>
+    </ul>
+    <p>Com 18 clientes e R$6.580 MRR, os dois sócios fazem tudo. Não é hora de construir estruturas complexas nem contratar gestores. É hora de fechar clientes e aprender com cada instalação.</p>
+    <div class="alert"><strong>Risco principal:</strong> querer pular para a Fase 3 antes de dominar a Fase 1. Evitar gastar energia em automações complexas ou modelos de gestão antes de ter a máquina de vendas rodando.</div>
+  </section>
+
+  <!-- O QUE VENDEMOS -->
+  <section id="vendemos">
+    <h2>O que vendemos de verdade</h2>
+    <p>Não vendemos câmeras. Vendemos <strong>tranquilidade, engajamento dos atletas e receita extra</strong> para o dono da arena.</p>
+    <p>O produto real é a experiência do atleta que vê o próprio lance repetido.</p>
+    <h3>Consequências práticas</h3>
+    <ul>
+      <li>O concorrente não é quem vende câmera mais barata — é quem entrega mais resultado para o dono</li>
+      <li>O suporte não é técnico — é sobre fazer o dono se sentir amparado</li>
+      <li>A venda não é de hardware — é de transformação no clube</li>
+    </ul>
+    <div class="alert"><strong>Abordagem de prospecção:</strong> não perguntar "você quer um sistema de replay?", mas sim "o que acontece com o engajamento dos seus atletas hoje? Eles ficam mais tempo no clube?"</div>
+  </section>
+
+  <!-- STORYBRAND -->
+  <section id="storybrand">
+    <h2>O Cliente como Herói — Framework StoryBrand</h2>
+    <p>A Clippa não é a estrela da história. O dono da arena é.</p>
+    <table>
+      <thead><tr><th>Parte</th><th>Clippa aplicada</th></tr></thead>
+      <tbody>
+        <tr><td>O Personagem</td><td>Dono de arena que quer reter atletas e se diferenciar</td></tr>
+        <tr><td>Com um Problema</td><td>Atletas não engajam, não voltam, não indicam o clube</td></tr>
+        <tr><td>Encontra um Guia</td><td>A Clippa aparece</td></tr>
+        <tr><td>Que tem um Plano</td><td>Instalar em 1 dia, resultado visível na semana 1</td></tr>
+        <tr><td>E o Chama à Ação</td><td>"Vamos fazer um teste de 30 dias?"</td></tr>
+        <tr><td>Que Resulta em Sucesso</td><td>Arena com atletas engajados, mais mensalidades, mais indicações</td></tr>
+        <tr><td>Ou em Fracasso</td><td>Continuar igual enquanto concorrentes instalam o sistema</td></tr>
+      </tbody>
+    </table>
+    <p>Esse reframe deve aparecer em toda comunicação: site, proposta, WhatsApp.</p>
+  </section>
+
+  <!-- RENOVAÇÃO -->
+  <section id="renovacao">
+    <h2>A Renovação é o Produto Real</h2>
+    <p>A câmera é só o meio. O que a Clippa realmente vende é a renovação anual.</p>
+    <p>Isso só acontece com CS de verdade. Nenhum cliente pode ficar 15 dias sem contato. Cada mensagem no grupo é um tijolo de retenção.</p>
+    <div class="alert"><strong>Ação:</strong> manter o painel de CS ativo e atualizado. Alertas de 15 dias sem interação são inegociáveis.</div>
+  </section>
+
+  <!-- ALAVANCAS -->
+  <section id="alavancas">
+    <h2>4 Alavancas de Receita</h2>
+    <table>
+      <thead><tr><th>#</th><th>O que é</th><th>Aplicação na Clippa</th></tr></thead>
+      <tbody>
+        <tr><td>01</td><td>Vender mais para os mesmos</td><td>Upsell de câmeras adicionais, placar digital</td></tr>
+        <tr><td>02</td><td>Aumentar ticket</td><td>R$90–100/quad → pacote premium com mais serviços</td></tr>
+        <tr><td>03</td><td>Ativações / lançamentos</td><td>Novo produto (transmissão ao vivo) para base atual</td></tr>
+        <tr><td>04</td><td>Retenção</td><td>Renovações — acompanhar vencimentos com antecedência</td></tr>
+      </tbody>
+    </table>
+    <div class="alert"><strong>A alavanca mais subutilizada hoje é a 01.</strong> RioMafra Padel tem 4 câmeras e R$1.050/mês. Quantos outros clientes poderiam expandir?</div>
+  </section>
+
+  <!-- EMBAIXADORES -->
+  <section id="embaixadores">
+    <h2>Embaixadores</h2>
+    <p>Nesse mercado nichado do sul do Brasil, todo mundo se conhece. Um dono de arena em Rio Negro conhece o dono de arena em Mafra.</p>
+    <p>Identificar 2–3 clientes embaixadores e tratá-los de forma especial (visita, desconto, acesso antecipado a features) pode gerar mais clientes do que qualquer anúncio.</p>
+    <div class="alert"><strong>Ação:</strong> mapear quem da base atual já indicou alguém. Registrar isso no CRM.</div>
+  </section>
+
+  <!-- OUVIR -->
+  <section id="ouvir">
+    <h2>Ouvir antes de construir</h2>
+    <p>A matéria-prima da inovação não é a tecnologia — é a audição.</p>
+    <ul>
+      <li>Quando foi a última vez que um cliente sugeriu algo que virou feature?</li>
+      <li>Os atletas sabem que a câmera existe por causa da arena?</li>
+    </ul>
+    <div class="alert"><strong>Ação mensal:</strong> enviar uma pergunta simples aos clientes — não pesquisa longa. Uma só: <em>"O que você mais gostaria que a Clippa fizesse que ela não faz hoje?"</em></div>
+    <p>Todo o roadmap (IA, vídeo vertical, rankings) deve passar pelo filtro do que os donos de arena e atletas realmente querem.</p>
+  </section>
+
+  <!-- FUNIL ACP -->
+  <section id="funil">
+    <h2>O Funil ACP — onde a Clippa está</h2>
+    <table>
+      <thead><tr><th>Camada</th><th>O que é</th><th>Clippa hoje</th></tr></thead>
+      <tbody>
+        <tr><td>Audiência</td><td>Redes sociais, YouTube, newsletter</td><td><span class="badge badge-red">Quase inexistente</span></td></tr>
+        <tr><td>Comunidade</td><td>WhatsApp, grupos, eventos</td><td><span class="badge badge-yellow">Parcial</span></td></tr>
+        <tr><td>Produto</td><td>O que você vende</td><td><span class="badge badge-green">Foco principal</span></td></tr>
+      </tbody>
+    </table>
+    <p>Sem audiência, toda prospecção é ativa e cara. Não é prioridade agora (Fase 1 é sobre vender), mas vale pensar no mínimo: <strong>um caso de sucesso por mês</strong> já ajuda a atrair sem esforço extra.</p>
+  </section>
+
+  <!-- AUTOMATIZAR -->
+  <section id="automatizar">
+    <h2>O que automatizar agora</h2>
+    <p>Critério: só automatizar o que é repetitivo e não precisa de julgamento humano.</p>
+    <table>
+      <thead><tr><th>Processo</th><th>Decisão</th></tr></thead>
+      <tbody>
+        <tr><td>Alerta de CS (15 dias sem contato)</td><td><span class="badge badge-green">Feito</span></td></tr>
+        <tr><td>Email diário de CS</td><td><span class="badge badge-green">Feito</span></td></tr>
+        <tr><td>Alerta de onboarding</td><td><span class="badge badge-yellow">Fazer logo</span></td></tr>
+        <tr><td>Lembrete de renovação (60/30/15 dias)</td><td><span class="badge badge-yellow">Fazer logo</span></td></tr>
+        <tr><td>Confirmação de agendamento de instalação</td><td><span class="badge badge-yellow">Fazer logo</span></td></tr>
+        <tr><td>Automação total do WhatsApp</td><td><span class="badge badge-red">Não fazer agora</span></td></tr>
+        <tr><td>IA de highlights</td><td><span class="badge badge-red">Fase 2/3</span></td></tr>
+      </tbody>
+    </table>
+    <p>Ferramentas para explorar: Lindy.ia, Make, n8n — para processos de cobrança, lembretes e triagem de suporte.</p>
+  </section>
+
+  <!-- MENTALIDADE -->
+  <section id="mentalidade">
+    <h2>Mentalidade do Dono — O que NÃO é para você</h2>
+    <p>Esse material não é para empresários que:</p>
+    <ul>
+      <li>Independente do resultado, <strong>não estão dispostos a mudar</strong></li>
+      <li>Se contentam com resultado mediano</li>
+      <li>Vivem de vitórias passadas e <strong>não buscam um resultado melhor</strong></li>
+      <li>Dão desculpas e <strong>não encontram estratégias para crescer</strong></li>
+    </ul>
+  </section>
+
+  <!-- ESTRATÉGIA -->
+  <section id="estrategia">
+    <h2>O que é Estratégia (e o que não é)</h2>
+    <blockquote>Estratégia é como você vai jogar para vencer — não é uma lista de tarefas.</blockquote>
+    <div class="card-grid">
+      <div class="card">
+        <h4>Estratégia É</h4>
+        <p>Escolhas deliberadas sobre onde competir, como executar e o que <strong>NÃO fazer</strong>.</p>
+      </div>
+      <div class="card">
+        <h4>Estratégia NÃO É</h4>
+        <p>Um plano de tarefas, um orçamento ou uma lista de projetos.</p>
+      </div>
+    </div>
+    <div class="alert"><strong>Aplicação na Clippa:</strong> decidir não atender fora do Sul do Brasil agora é estratégia. Decidir não construir IA antes de ter 50 clientes é estratégia. A lista de features do roadmap não é estratégia — é tática.</div>
+  </section>
+
+  <!-- 4CS -->
+  <section id="4cs">
+    <h2>Os 4C's da Estratégia</h2>
+    <p>O papel do gestor é garantir clareza para a equipe em 4 dimensões:</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="num">C1</div>
+        <h4>Choice (Escolha)</h4>
+        <p>Decidir os 2–3 focos do ano e dizer NÃO pro resto.<br><br><em>Clippa: focos de 2026 são vender (57 clientes) e reter (churn zero).</em></p>
+      </div>
+      <div class="card">
+        <div class="num">C2</div>
+        <h4>Clarity (Clareza)</h4>
+        <p>Garantir que cada área saiba a meta e por que ela importa.<br><br><em>Clippa: cada processo novo precisa estar documentado antes de delegar.</em></p>
+      </div>
+      <div class="card">
+        <div class="num">C3</div>
+        <h4>Commitment (Comprometimento)</h4>
+        <p>Uma reunião de 30 minutos por semana para alinhar.<br><br><em>Clippa: revisão semanal — o que fechou, o que está em risco, o que precisa de ação.</em></p>
+      </div>
+      <div class="card">
+        <div class="num">C4</div>
+        <h4>Congruency (Congruência)</h4>
+        <p>Checar se cada decisão está levando pro mesmo objetivo.<br><br><em>Clippa: preço acessível + suporte direto + produto integrado se reforçam.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GLC -->
+  <section id="glc">
+    <h2>Objetivos Estratégicos — O Triângulo GLC</h2>
+    <p>Todo negócio equilibra três objetivos. Escolher onde focar define as decisões:</p>
+    <table>
+      <thead><tr><th>Objetivo</th><th>O que significa</th><th>Clippa hoje</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Growth (Crescimento)</strong></td><td>Maximizar o valor financeiro</td><td>Meta: 57 clientes, R$25k MRR em 2026</td></tr>
+        <tr><td><strong>Liquidity (Liquidez)</strong></td><td>Garantir fluxo de caixa saudável</td><td>Prioridade: MRR previsível, churn zero</td></tr>
+        <tr><td><strong>Control (Controle)</strong></td><td>Decisão centrada no fundador, sem capital externo</td><td>Operação 100% bootstrapped</td></tr>
+      </tbody>
+    </table>
+    <div class="alert"><strong>A Clippa hoje está no vértice Controle–Liquidez.</strong> Sem investidor, sem dívida. O crescimento vem da operação, não de capital externo.</div>
+    <p><em>Source: BanyanGlobal</em></p>
+  </section>
+
+  <!-- DIAGNÓSTICO -->
+  <section id="diagnostico">
+    <h2>Roteiro de Planejamento Estratégico — 2 Diagnósticos</h2>
+    <p>Para fazer planejamento estratégico, dois diagnósticos são necessários: <strong>externo e interno.</strong></p>
+
+    <h3>1) Em que mercado atuamos? → Posicionamento Atual</h3>
+    <ul>
+      <li>Geografia (onde?)</li>
+      <li>Regulação (quais são as regras do jogo?)</li>
+      <li>Competição (muitos ou poucos players?)</li>
+      <li>Novos Entrantes (quem está chegando?)</li>
+      <li>Substitutos (o que pode te tornar irrelevante?)</li>
+      <li>Fornecedores</li>
+      <li>Clientes</li>
+    </ul>
+
+    <h3>2) A quem servimos? → Natureza da Demanda</h3>
+    <ul>
+      <li>Perfil da demanda: demográfico, econômico</li>
+      <li>Segmentação: socioeconômico (quanto podem pagar?), uso (para que usam?)</li>
+      <li>Tendências de longo prazo da demanda</li>
+    </ul>
+
+    <h3>3) Com quem competimos? → Elementos e natureza do Mercado</h3>
+    <ul>
+      <li>Perfil dos competidores: alcance, porte</li>
+      <li>Segmentação da oferta</li>
+      <li>Incumbents (titulares) e novos entrantes</li>
+      <li>Substitutos e outliers</li>
+      <li>Organização da oferta</li>
+      <li>Tendências de longo prazo da oferta</li>
+    </ul>
+
+    <h3>4) Como estamos neste mercado atualmente? → Posicionamento Atual</h3>
+    <ul>
+      <li>Em relação aos competidores diretos (Peer Group)</li>
+      <li>Em relação aos segmentos da demanda — quem atendemos</li>
+      <li>Posicionamento resultante (atual)</li>
+      <li>Posicionamento possível (potencial)</li>
+    </ul>
+
+    <h3>5) Quais são nossos resultados? → Resultados Atuais</h3>
+    <ul>
+      <li>Portfólio</li>
+      <li>Nível de serviço</li>
+      <li>Vendas (receita e nº de clientes)</li>
+      <li>Resultado (margem)</li>
+    </ul>
+
+    <h3>6) Estamos atingindo nosso potencial? → Potencial e Futuro</h3>
+    <ul>
+      <li>Posicionamento atual versus posicionamento máximo possível</li>
+      <li>Resultado atual versus resultado potencial</li>
+      <li>Defender posição, evoluir ou transformar</li>
+      <li>Posicionamentos futuros possíveis e desejados</li>
+    </ul>
+
+    <div class="alert"><strong>Aplicação na Clippa:</strong> esse diagnóstico já está parcialmente feito no <code>analise_competitiva_replay_esportivo.md</code>. Vale revisitar com esse framework completo (6 perguntas) antes de definir a estratégia de 2026.</div>
+  </section>
+
+  <!-- 7 ÁREAS -->
+  <section id="7areas">
+    <h2>As 7 Áreas para Escalar — Pessoas e Processos</h2>
+    <p>Pessoas e processos são obrigatórios para escalar cada uma das 7 áreas:</p>
+    <div class="card-grid">
+      <div class="card">
+        <h4>Growth — Crescimento de receita</h4>
+        <ul style="margin:8px 0 0; padding-left:16px;">
+          <li>Marketing</li>
+          <li>Vendas</li>
+          <li>Retenção</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Liquidity — Fluxo de caixa</h4>
+        <ul style="margin:8px 0 0; padding-left:16px;">
+          <li>Finanças</li>
+        </ul>
+      </div>
+      <div class="card" style="grid-column: span 2;">
+        <h4>Control — Processos e pessoas alinhadas</h4>
+        <ul style="margin:8px 0 0; padding-left:16px; columns: 3;">
+          <li>Operação</li>
+          <li>Liderança/cultura</li>
+          <li>Retenção</li>
+        </ul>
+      </div>
+    </div>
+    <div class="alert"><strong>Fraca hoje:</strong> Marketing (sem audiência) e Liderança/cultura (só 2 sócios). <strong>Forte:</strong> Operação e Retenção.</div>
+  </section>
+
+  <!-- PRINCÍPIOS -->
+  <section id="principios">
+    <h2>Os 5 Princípios da Clippa Agora</h2>
+    <ol class="principles">
+      <li><div><strong>Estamos na Fase 1.</strong> Foco em validar, vender e aprender. Não pular etapas.</div></li>
+      <li><div><strong>Vender resultado, não câmera.</strong> Toda comunicação centrada no que o dono da arena ganha.</div></li>
+      <li><div><strong>A matéria-prima da inovação é ouvir.</strong> Antes de construir a próxima feature, perguntar.</div></li>
+      <li><div><strong>Retenção é o produto real.</strong> O CS que construímos é diretamente sobre isso.</div></li>
+      <li><div><strong>Identificar os embaixadores.</strong> 2–3 clientes que indicam valem mais do que qualquer anúncio.</div></li>
+    </ol>
+  </section>
+
+  <!-- OBSTÁCULOS -->
+  <section id="obstaculos">
+    <h2>Para cada obstáculo, defina 4 elementos</h2>
+    <blockquote>Se faltar qualquer um desses 4, a ação não existe.</blockquote>
+    <table>
+      <thead><tr><th>Elemento</th><th>Pergunta</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Ação</strong></td><td>Que será feito?</td></tr>
+        <tr><td><strong>Responsável (CPF)</strong></td><td>Quem vai fazer?</td></tr>
+        <tr><td><strong>Prazo</strong></td><td>Até quando?</td></tr>
+        <tr><td><strong>Resultado Esperado</strong></td><td>Como sabemos se funcionou?</td></tr>
+      </tbody>
+    </table>
+    <div class="alert"><strong>Aplicação na Clippa:</strong> toda tarefa no painel de CS, toda instalação agendada, todo follow-up de renovação precisa ter esses 4 elementos. Sem dono e sem prazo, não é uma ação — é um desejo.</div>
+  </section>
+
+  <!-- ROTEIRO 2° PASSO -->
+  <section id="roteiro2">
+    <h2>Roteiro Completo de Planejamento Estratégico — 2° Passo</h2>
+    <p>Uma vez diagnosticada a situação do mercado e da empresa, o 2° passo é trazer à luz as ambições dos acionistas e construir a visão de longo prazo e as ações.</p>
+    <table>
+      <thead><tr><th>Etapa</th><th>Pergunta</th><th>Output</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Ambições</strong></td><td>O que queremos ser?</td><td>Resultados desejados pelos acionistas, metas transformacionais</td></tr>
+        <tr><td><strong>Visão</strong></td><td>O que está em nosso alcance?</td><td>Resultados prováveis — a visão construída a partir da realidade</td></tr>
+        <tr><td><strong>Obstáculos</strong></td><td>O que nos impede de chegar à visão?</td><td>Barreiras internas e externas que precisam ser mitigadas</td></tr>
+        <tr><td><strong>Ações</strong></td><td>O que queremos fazer para mitigar?</td><td>Plano de ação com as 4 perguntas (ação, responsável, prazo, resultado)</td></tr>
+        <tr><td><strong>Impacto e Indicadores</strong></td><td>O que impacta a estratégia e como monitorar?</td><td>KPIs e métricas de acompanhamento</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- CASE G4 -->
+  <section id="caseg4">
+    <h2>Case G4 — Congruência na Prática (C4)</h2>
+    <p>O G4 criou a unidade InCompany para atender grandes empresas (iFood, Suzano, Ambev): custo operacional baixo, unidade lucrativa, grande oportunidade.</p>
+    <p><strong>Mas o G4 nasceu para servir pequenos e médios empresários.</strong></p>
+    <p>A decisão foi descontinuar a unidade — mesmo sendo lucrativa — porque estava desalinhada com a estratégia.</p>
+    <div class="alert"><strong>Aplicação na Clippa:</strong> oportunidades que parecem atraentes mas fogem do foco (atender academias, escolas, outros segmentos) devem ser avaliadas com esse filtro. Se não serve ao dono de arena de beach tennis/padel no Sul do Brasil, não é para agora.</div>
+  </section>
+
+  <!-- FINANCEIRO -->
+  <section id="financeiro">
+    <h2>Referência — Planejamento Financeiro de Longo Prazo</h2>
+    <p>O curso mostrou um exemplo real de planejamento feito em 2021 com projeção até 2026, com receita bruta consolidada crescendo de R$20.530 (2020) para R$675.716 (2026E).</p>
+    <p><strong>O ponto:</strong> planejamento estratégico exige projeções financeiras de múltiplos anos, não só metas anuais. As taxas de crescimento vão desacelerando com o tempo (253% → 117% → 61% → 62% → 58% → 46%), o que é normal e precisa estar no plano.</p>
+    <div class="alert"><strong>Para a Clippa:</strong> as metas atuais (R$10.400 MRR no 1S2026, R$25.000 MRR no final de 2026) precisam de uma projeção financeira estruturada com premissas claras de churn, ticket médio e custo de aquisição.</div>
+  </section>
+
+  <footer>
+    Baseado nas aulas do curso Cabeça de Dono — Abril 2026
+  </footer>
+
+</div>
+</body>
+</html>
